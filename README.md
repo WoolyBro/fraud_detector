@@ -23,9 +23,9 @@ Each row is a simulated financial transaction with these fields:
 
 ## The model
 
-A Logistic Regression pipeline (`StandardScaler` + `OneHotEncoder`) trained on the numeric balance fields and transaction type. On held-out test data it catches **94% of actual fraud cases** (recall), though it flags some legitimate transactions too (low precision) — it favors not missing fraud over avoiding false alarms.
+The model learns from thousands of past transactions to guess whether a new one looks fraudulent. On test data it correctly catches **94% of actual fraud cases**, though it also raises some false alarms on legitimate transactions — it's tuned to avoid missing fraud rather than avoiding false alarms.
 
-Since the model can miss fraud that doesn't fit patterns it learned (e.g. a transaction type it rarely saw as fraudulent), the app also runs a simple **balance consistency check**: it verifies the sender's balance actually changed by the stated `amount`. A transaction is flagged if *either* the model or this check considers it suspicious.
+Since it can miss fraud that doesn't match patterns it learned (e.g. a transaction type it rarely saw as fraudulent before), the app also runs a simple **balance consistency check**: it verifies the sender's balance actually changed by the stated `amount`. A transaction is flagged if *either* the model or this check considers it suspicious.
 
 ## Running it
 
