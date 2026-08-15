@@ -23,7 +23,7 @@ Each row is a simulated financial transaction with these fields:
 
 ## The model
 
-The model learns from thousands of past transactions to guess whether a new one looks fraudulent. On test data it correctly catches **94% of actual fraud cases**, though it also raises some false alarms on legitimate transactions — it's tuned to avoid missing fraud rather than avoiding false alarms.
+The model learns from thousands of past transactions to guess whether a new one looks fraudulent. On test data it's **94.5% accurate**, though it also raises some false alarms on legitimate transactions — it's tuned to avoid missing fraud rather than avoiding false alarms.
 
 Since it can miss fraud that doesn't match patterns it learned (e.g. a transaction type it rarely saw as fraudulent before), the app also runs a simple **balance consistency check**: it verifies the sender's balance actually changed by the stated `amount`. A transaction is flagged if *either* the model or this check considers it suspicious.
 
